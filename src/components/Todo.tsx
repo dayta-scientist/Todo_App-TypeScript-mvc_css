@@ -1,8 +1,11 @@
-import { Todo as TodoType } from "../types"
+import { TodoId, Todo as TodoType } from "../types"
 
-type Props = TodoType
+// type Props = TodoType
+interface Props extends TodoType {
+  onHandleDelete: ({id}: TodoId) => void
+}
 
-export const Todo: React.FC<Props> = ({ id, title, completed }) => {
+export const Todo: React.FC<Props> = ({ id, title, completed, onHandleDelete }) => {
   return(
     <div>
       <input 
@@ -15,7 +18,7 @@ export const Todo: React.FC<Props> = ({ id, title, completed }) => {
         <label>{title}</label>
         <button 
           className="destroy"
-          onClick={() => {} } />
+          onClick={() => {onHandleDelete({id})} } />
     </div>
   )
 }
