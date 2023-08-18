@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { mockTodos } from './mocks/mockTodos'
 import { Todos } from './components/Todos'
-import { FilterValue, TodoId, Todo as TodoType } from './types'
+import { FilterValue, TodoId, Todo as TodoType, TodoTitle } from './types';
 import { Footer } from './components/Footer'
 import { TODO_FILTERS } from './consts'
+import { Header } from './components/Header'
 
 function App() {
   const [todos, setTodos] = useState(mockTodos)
@@ -46,9 +47,21 @@ function App() {
     return todo
   })
 
+  const handleAddTodo = ({title}: string) : void => {
+    const newTodo = {
+      id: crypto.randomUUID(),
+      title,
+      completed: false
+    }
+
+    const newTodos = [...todos, newTodo]
+    setTodos(newTodos)
+  }
+
   return (
     <>
       <div className='todoapp'>
+        <Header saveTodo={handleAddTodo} />
         <Todos 
           onToggleCompleted={handleCompleted}
           todos={filteredTodos}

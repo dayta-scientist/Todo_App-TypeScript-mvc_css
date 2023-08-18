@@ -17,7 +17,7 @@ export const Footer: React.FC<Props> = ({
     onClearCompleted
   }) => {
     const singleActiveCount = activeCount === 1
-    const activeTodoWord = singleActiveCount ? 'tarea' : 'tareas'
+    const activeTodoWord = singleActiveCount ? 'task' : 'tasks'
 
   return(
     <footer className="footer">
